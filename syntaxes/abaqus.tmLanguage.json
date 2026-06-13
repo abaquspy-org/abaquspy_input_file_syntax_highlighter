@@ -1,53 +1,43 @@
 {
   "scopeName": "source.abaqus",
+
   "patterns": [
-    { "include": "#python_block" },
     { "include": "#keywords" },
-    { "include": "#kv_pairs" }
+    { "include": "#kv_pairs" },
+    { "include": "#python_block" }
   ],
 
   "repository": {
-    "python_block": {
-      "name": "meta.embedded.python.abaqus",
-
-      "begin": "(<py\\b)",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.control.abaqus.python.tag"
-        }
-      },
-
-      "end": "(py>)",
-      "endCaptures": {
-        "1": {
-          "name": "keyword.control.abaqus.python.tag"
-        }
-      },
-
-      "patterns": [
-        {
-          "match": "\\$",
-          "name": "punctuation.definition.dollar.abaqus"
-        },
-        {
-          "include": "source.python"
-        }
-      ]
-    },
 
     "keywords": {
       "patterns": [
         {
-          "match": "^\\s*\\*(BEAM SECTION|SOLID SECTION|SURFACE INTERACTION|CONTACT PAIR|RIGID BODY|END STEP|MODEL CHANGE|SURFACE BEHAVIOR|INITIAL CONDITIONS|NODE OUTPUT|ELEMENT OUTPUT|CONTACT OUTPUT)",
-          "name": "keyword.control.abaqus.generic"
+          "match": "^\\s*\\*\\*.*?\\*\\*\\s*$",
+          "name": "comment.line.abaqus"
         },
         {
-          "match": "^\\s*\\*[^\\s,]+",
-          "name": "keyword.control.abaqus.generic"
+          "match": "^\\s*\\*[^,\\r\\n]+",
+          "name": "keyword.control.abaqus"
         },
         {
           "match": "\\$",
           "name": "punctuation.definition.dollar.abaqus"
+        }
+      ]
+    },
+
+    "dollar_output": {
+      "patterns": [
+        {
+          "match": "\\*\\*.*?\\*\\*\\s*$",
+          "name": "comment.line.abaqus"
+        },
+        {
+          "match": "\\*[^,\\r\\n]+",
+          "name": "keyword.control.abaqus"
+        },
+        {
+          "include": "#kv_pairs"
         }
       ]
     },
@@ -58,10 +48,10 @@
           "match": "(\\b[A-Z_]+(?:\\s+[A-Z_]+)*\\s*=)([^,\\n\\r]+)",
           "captures": {
             "1": {
-              "name": "support.constant.abaqus.parameter"
+              "name": "support.constant.parameter.abaqus"
             },
             "2": {
-              "name": "string.unquoted.abaqus.value"
+              "name": "string.unquoted.value.abaqus"
             }
           }
         },
@@ -69,9 +59,51 @@
           "match": "(?<=,\\s*)(NLGEOM|ADD|REMOVE|FIXED|USER|FOLLOWER|FIELD|HISTORY|GENERATE|NONLINEAR)(?=\\s*(?:,|$))",
           "captures": {
             "1": {
-              "name": "string.unquoted.abaqus.value"
+              "name": "string.unquoted.value.abaqus"
             }
           }
+        }
+      ]
+    },
+
+    "python_block": {
+      "name": "meta.embedded.block.python.abaqus",
+
+      "begin": "(<py\\b)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.python.abaqus"
+        }
+      },
+
+      "end": "(py>)",
+      "endCaptures": {
+        "1": {
+          "name": "entity.name.tag.python.abaqus"
+        }
+      },
+
+      "patterns": [
+        {
+          "begin": "^(\\s*\\$)\\s*",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.dollar.abaqus"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "include": "#dollar_output"
+            }
+          ]
+        },
+        {
+          "match": "\\$",
+          "name": "punctuation.definition.dollar.abaqus"
+        },
+        {
+          "include": "source.python"
         }
       ]
     }

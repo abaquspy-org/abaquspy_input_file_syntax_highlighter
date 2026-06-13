@@ -1,11 +1,30 @@
 {
-  "name": "abaquspy-input_file-syntax-highlighter",
+  "icon": "images/logo_marketplace.png",
+  "name": "abaquspy-input-file-syntax-highlighter",
   "displayName": "AbaqusPy (Input File Syntax Highlighter)",
   "description": "Syntax highlighting for Abaqus input files with embedded Python blocks",
-  "version": "0.0.1",
-  "publisher": "Ismael Ripoll",
+  "version": "0.0.2",
+  "publisher": "ismael-ripoll",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abaquspy-org/abaquspy_input_file_syntax_highlighter.git"
+  },
+  "homepage": "https://github.com/abaquspy-org/abaquspy_input_file_syntax_highlighter",
+  "bugs": {
+    "url": "https://github.com/abaquspy-org/abaquspy_input_file_syntax_highlighter/issues"
+  },
+  "keywords": [
+    "abaqus",
+    "abaqus-py",
+    "inp",
+    "python",
+    "syntax-highlighting",
+    "textmate",
+    "subsea-energies"
+  ],
   "engines": {
-    "vscode": "^1.124.0"
+    "vscode": "^1.85.0"
   },
   "categories": ["Programming Languages"],
   "contributes": {
@@ -27,21 +46,27 @@
       "editor.tokenColorCustomizations": {
         "textMateRules": [
           {
-            "scope": "keyword.control.abaqus.python.tag",
+            "scope": "comment.line.abaqus",
             "settings": {
-              "foreground": "#ffb86c"
+              "foreground": "#9f5fbf"
             }
           },
           {
-            "scope": "keyword.control.abaqus.generic",
+            "scope": "keyword.control.abaqus",
             "settings": {
               "foreground": "#BF5FA5"
             }
           },
           {
-            "scope": "string.unquoted.abaqus.value",
+            "scope": "string.unquoted.value.abaqus",
             "settings": {
               "foreground": "#54c971"
+            }
+          },
+          {
+            "scope": "entity.name.tag.python.abaqus",
+            "settings": {
+              "foreground": "#ffb86c"
             }
           },
           {
