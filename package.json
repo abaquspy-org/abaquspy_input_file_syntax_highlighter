@@ -1,0 +1,57 @@
+{
+  "name": "abaquspy-input_file-syntax-highlighter",
+  "displayName": "AbaqusPy (Input File Syntax Highlighter)",
+  "description": "Syntax highlighting for Abaqus input files with embedded Python blocks",
+  "version": "0.0.1",
+  "publisher": "Ismael Ripoll",
+  "engines": {
+    "vscode": "^1.124.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "abaqus",
+        "extensions": [".inp"],
+        "aliases": ["Abaqus"]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "abaqus",
+        "scopeName": "source.abaqus",
+        "path": "./syntaxes/abaqus.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": "keyword.control.abaqus.python.tag",
+            "settings": {
+              "foreground": "#ffb86c"
+            }
+          },
+          {
+            "scope": "keyword.control.abaqus.generic",
+            "settings": {
+              "foreground": "#BF5FA5"
+            }
+          },
+          {
+            "scope": "string.unquoted.abaqus.value",
+            "settings": {
+              "foreground": "#54c971"
+            }
+          },
+          {
+            "scope": "punctuation.definition.dollar.abaqus",
+            "settings": {
+              "foreground": "#ff7777"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

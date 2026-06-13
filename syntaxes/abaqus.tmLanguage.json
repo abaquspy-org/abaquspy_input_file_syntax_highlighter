@@ -1,0 +1,79 @@
+{
+  "scopeName": "source.abaqus",
+  "patterns": [
+    { "include": "#python_block" },
+    { "include": "#keywords" },
+    { "include": "#kv_pairs" }
+  ],
+
+  "repository": {
+    "python_block": {
+      "name": "meta.embedded.python.abaqus",
+
+      "begin": "(<py\\b)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.abaqus.python.tag"
+        }
+      },
+
+      "end": "(py>)",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.abaqus.python.tag"
+        }
+      },
+
+      "patterns": [
+        {
+          "match": "\\$",
+          "name": "punctuation.definition.dollar.abaqus"
+        },
+        {
+          "include": "source.python"
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "match": "^\\s*\\*(BEAM SECTION|SOLID SECTION|SURFACE INTERACTION|CONTACT PAIR|RIGID BODY|END STEP|MODEL CHANGE|SURFACE BEHAVIOR|INITIAL CONDITIONS|NODE OUTPUT|ELEMENT OUTPUT|CONTACT OUTPUT)",
+          "name": "keyword.control.abaqus.generic"
+        },
+        {
+          "match": "^\\s*\\*[^\\s,]+",
+          "name": "keyword.control.abaqus.generic"
+        },
+        {
+          "match": "\\$",
+          "name": "punctuation.definition.dollar.abaqus"
+        }
+      ]
+    },
+
+    "kv_pairs": {
+      "patterns": [
+        {
+          "match": "(\\b[A-Z_]+(?:\\s+[A-Z_]+)*\\s*=)([^,\\n\\r]+)",
+          "captures": {
+            "1": {
+              "name": "support.constant.abaqus.parameter"
+            },
+            "2": {
+              "name": "string.unquoted.abaqus.value"
+            }
+          }
+        },
+        {
+          "match": "(?<=,\\s*)(NLGEOM|ADD|REMOVE|FIXED|USER|FOLLOWER|FIELD|HISTORY|GENERATE|NONLINEAR)(?=\\s*(?:,|$))",
+          "captures": {
+            "1": {
+              "name": "string.unquoted.abaqus.value"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
