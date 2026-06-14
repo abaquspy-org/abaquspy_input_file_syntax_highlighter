@@ -3,7 +3,7 @@
   "name": "abaquspy-input-file-syntax-highlighter",
   "displayName": "AbaqusPy (Input File Syntax Highlighter)",
   "description": "Syntax highlighting for Abaqus input files with embedded Python blocks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "ismael-ripoll",
   "license": "MIT",
   "scripts": {

@@ -1,18 +1,25 @@
-# AbaqusPy: Abaqus Input File Syntax Highlighter
+# AbaqusPy: Input File Syntax Highlighter for Abaqus
 
-A Visual Studio Code extension that provides syntax highlighting for Abaqus input files (`.inp`), including both Abaqus standard syntax and AbaqusPy hybrid Abaqus–Python syntaxes.
+AbaqusPy is an open-source framework, distributed as part of [PySubsea](https://pypi.org/project/pysubsea/), for extending Abaqus `.inp` workflows with lightweight Python integration.
 
-AbaqusPy is an open-source framework, distributed as part of [PySubsea](https://pypi.org/project/pysubsea/), that extends the standard Abaqus `.inp` syntax with two simple  but powerful additions that unlock full power and flexibility of Python:
+This Visual Studio Code extension provides syntax highlighting for Abaqus input files (`.inp`), including standard Abaqus syntax and AbaqusPy extensions.
+
+
+## AbaqusPy Syntax Extensions
+
+AbaqusPy extends the standard Abaqus `.inp` syntax with:
 
 - `<py` and `py>` blocks for embedded Python logic, loops, calculations, and variable definitions
 - `$` output markers for writing Python-generated lines into the final executable Abaqus .inp file
 
-The main capabilities of the extension are:
+
+## Features
 
 - Highlights Abaqus keywords and directives (e.g. `*NODE`, `*ELEMENT`, etc.).
 - Highlights AbaqusPy `<py` and `py>` Python blocks.
 - Highlights AbaqusPy `$` output markers used for generating the final Abaqus input file.
-- Improves readability of complex .inp files used in automation and parametric workflows.
+- Improves readability of complex `.inp` files used in automation and parametric workflows.
+
 
 ## Preview
 
@@ -32,12 +39,26 @@ The main capabilities of the extension are:
 ## Extension Details
 
 - **Publisher:** `ismael-ripoll`
-- **Credits:** Developed in collaboration with Subsea Energies, https://www.subseaenergies.com.
 - **Extension Name:** `abaquspy-input-file-syntax-highlighter`
 - **Identifier:** `ismael-ripoll.abaquspy-input-file-syntax-highlighter`
+- **Credits:** Developed in collaboration with Subsea Energies (https://www.subseaenergies.com)
 
-## Repository, License and Release Notes
 
-- AbaqusPy is an open-source framework, distributed as part of PySubsea (https://pypi.org/project/pysubsea/).
-- AbaqusPy is licensed under the MIT License, see [LICENSE](./LICENSE) for details.
-- See [CHANGELOG.md](./CHANGELOG.md) for version history and updates.
+## Dependencies
+
+AbaqusPy integrates with the open-source PySubsea framework:
+
+- PySubsea (PyPI): https://pypi.org/project/pysubsea/
+- PySubsea repository: https://github.com/py-subsea/py-subsea
+- PySubsea documentation: https://py-subsea.github.io/py-subsea/
+
+
+## License
+
+- PySubsea is licensed under a MIT License (see [LICENSE](./LICENSE) for details).
+- AbaqusPy is therefore also licensed under a MIT License.
+
+
+## Trademark Notice
+
+AbaqusPy is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Dassault Systèmes. Abaqus is a trademark of Dassault Systèmes.
