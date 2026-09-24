@@ -2,22 +2,23 @@
 
 All notable changes to this project are documented in this file.
 
-## [0.0.3] - 2026-06-14
+## [0.0.3] - 2026-09-25
 
-- Updated extension documentation in README.md with clearer structure and project context.
-- Expanded dependency and licensing details for PySubsea in README.md.
-- Added trademark notice and refined extension metadata wording in README.md.
-- Bumped extension version from 0.0.2 to 0.0.3 in package.json:6 and package-lock.json:3.
+- Added an explicit cyan color for Abaqus parameter names across VS Code themes.
 
-## [0.0.2] - 2026-06-13
+## [0.0.2] - 2026-07-11
 
-- Refined Abaqus keyword highlighting to cover multi-word directives up to the first comma.
-- Added highlighting for banner-style `** ... **` lines.
-- Improved TextMate scope naming to follow standard conventions.
-- Added Abaqus highlighting for output lines beginning with `$` inside embedded Python blocks.
+- Bumped extension version to 0.0.2 for release.
+- Synchronized lockfile package metadata with extension package metadata.
 
-## [0.0.1] - 2026-06-13
+## [0.0.1] - 2026-07-09
 
 - Initial release.
 - Added TextMate grammar for Abaqus input files.
 - Added embedded Python block highlighting support.
+- Clarified marketplace description as unofficial and community-maintained.
+- Updated keywords for relevance and reduced brand-risk terms.
+- Aligned README publisher/name/identifier with package metadata.
+- Added README Security and Privacy section (no telemetry, no network calls, no code execution).
+- Expanded release packaging excludes for cleaner VSIX artifacts.
+- Refined trademark notice wording for clearer independence statement.

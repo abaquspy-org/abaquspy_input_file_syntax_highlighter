@@ -56,7 +56,7 @@
           }
         },
         {
-          "match": "(?<=,\\s*)(NLGEOM|ADD|REMOVE|FIXED|USER|FOLLOWER|FIELD|HISTORY|GENERATE|NONLINEAR)(?=\\s*(?:,|$))",
+          "match": "(?<=,\\s*)(NLGEOM|ADD|REMOVE|FIXED|USER|FOLLOWER|FIELD|HISTORY|GENERATE|NONLINEAR|PRESSURE-OVERCLOSURE)(?=\\s*(?:,|$))",
           "captures": {
             "1": {
               "name": "string.unquoted.value.abaqus"

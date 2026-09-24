@@ -38,9 +38,9 @@ AbaqusPy extends the standard Abaqus `.inp` syntax with:
 
 ## Extension Details
 
-- **Publisher:** `ismael-ripoll`
-- **Extension Name:** `abaquspy-input-file-syntax-highlighter`
-- **Identifier:** `ismael-ripoll.abaquspy-input-file-syntax-highlighter`
+- **Publisher:** `ismaelripoll`
+- **Extension Name:** `syntax-highlighter-for-abaqus-input-files`
+- **Identifier:** `ismaelripoll.syntax-highlighter-for-abaqus-input-files`
 - **Credits:** Developed in collaboration with Subsea Energies (https://www.subseaenergies.com)
 
 
@@ -59,6 +59,14 @@ AbaqusPy integrates with the open-source PySubsea framework:
 - AbaqusPy is therefore also licensed under a MIT License.
 
 
+## Security and Privacy
+
+- This extension is grammar-only and provides syntax highlighting.
+- It does not execute scripts or run code on your files.
+- It does not collect telemetry.
+- It does not make network calls.
+
+
 ## Trademark Notice
 
-AbaqusPy is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Dassault Systèmes. Abaqus is a trademark of Dassault Systèmes.
+This extension is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Dassault Systèmes. Abaqus is a trademark of Dassault Systèmes.

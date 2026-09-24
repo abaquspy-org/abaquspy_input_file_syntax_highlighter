@@ -1,10 +1,10 @@
 {
   "icon": "images/logo_marketplace.png",
-  "name": "abaquspy-input-file-syntax-highlighter",
-  "displayName": "AbaqusPy (Input File Syntax Highlighter)",
-  "description": "Syntax highlighting for Abaqus input files with embedded Python blocks",
+  "name": "syntax-highlighter-for-abaqus-input-files",
+  "displayName": "Syntax Highlighter for Abaqus Input Files",
+  "description": "Unofficial, community-maintained syntax highlighting for Abaqus .inp files with AbaqusPy-style embedded Python blocks",
   "version": "0.0.3",
-  "publisher": "ismael-ripoll",
+  "publisher": "ismaelripoll",
   "license": "MIT",
   "scripts": {
     "package": "vsce package",
@@ -20,12 +20,12 @@
   },
   "keywords": [
     "abaqus",
-    "abaqus-py",
+    "abaquspy",
     "inp",
     "python",
     "syntax-highlighting",
     "textmate",
-    "subsea-energies"
+    "finite-element"
   ],
   "engines": {
     "vscode": "^1.85.0"
@@ -65,6 +65,12 @@
             "scope": "string.unquoted.value.abaqus",
             "settings": {
               "foreground": "#54c971"
+            }
+          },
+          {
+            "scope": "support.constant.parameter.abaqus",
+            "settings": {
+              "foreground": "#00CED1"
             }
           },
           {
