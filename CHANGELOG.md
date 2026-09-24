@@ -2,12 +2,9 @@
 
 All notable changes to this project are documented in this file.
 
-## [0.0.3] - 2026-09-25
+## [0.0.2] - 2026-09-25
 
 - Added an explicit cyan color for Abaqus parameter names across VS Code themes.
-
-## [0.0.2] - 2026-07-11
-
 - Bumped extension version to 0.0.2 for release.
 - Synchronized lockfile package metadata with extension package metadata.
 
