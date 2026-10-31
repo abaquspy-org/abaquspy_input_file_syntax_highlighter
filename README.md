@@ -9,17 +9,17 @@ This Visual Studio Code extension provides syntax highlighting for Abaqus input 
 
 AbaqusPy extends the standard Abaqus `.inp` syntax with:
 
-- `<py` and `py>` blocks for embedded Python logic, loops, calculations, and variable definitions
-- `$` output markers for writing Python-generated lines into the final executable Abaqus .inp file
+- `<py` and `py>` blocks for embedded Python logic, including loops, calculations, and variable definitions.
+- `$` output markers for inserting Python-generated content into the final executable Abaqus `.inp` file
 
 
 ## Features
 
 - Highlights Abaqus keywords and directives (e.g. `*NODE`, `*ELEMENT`, etc.).
-- Highlights AbaqusPy `<py` and `py>` Python blocks.
+- Highlights Python syntax highlighting inside AbaqusPy `<py` and `py>` blocks.
 - Highlights AbaqusPy `$` output markers and the Abaqus syntax following them, both inside and outside `<py` ... `py>` blocks.
 - Highlights Python `{...}` expressions consistently in output lines and parameter values, such as `surf_sleeper_{i+1}`.
-- Supports Ctrl+/ to toggle Python `#` comments inside `<py` ... `py>` blocks and Abaqus `**` comments outside them in `.inp` and `.pes` files.
+- Supports `Ctrl+/` to toggle Python `#` comments inside `<py` ... `py>` blocks and Abaqus `**` comments outside them in `.inp` and `.pes` files.
 - Improves readability of complex `.inp` and `.pes` files used in automation and parametric workflows.
 
 
@@ -40,12 +40,10 @@ AbaqusPy extends the standard Abaqus `.inp` syntax with:
 
 ## Extension Details
 
-- **Publisher display name:** Subsea Energies
+- **Publisher:** Subsea Energies (https://www.subseaenergies.com)
 - **Publisher ID:** `ismaelripoll`
-- **Extension Name:** `syntax-highlighter-for-abaqus-input-files`
-- **Identifier:** `ismaelripoll.syntax-highlighter-for-abaqus-input-files`
-- **Credits:** Developed in collaboration with Subsea Energies (https://www.subseaenergies.com)
-
+- **Extension ID:** `ismaelripoll.syntax-highlighter-for-abaqus-input-files`
+- **Maintained by:** Subsea Energies (https://www.subseaenergies.com)
 
 ## Related Framework
 
