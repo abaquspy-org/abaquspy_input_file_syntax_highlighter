@@ -63,25 +63,6 @@ AbaqusPy integrates with the open-source PySubsea framework for executing parame
 This extension is licensed under the MIT License (see [LICENSE](./LICENSE)).
 
 
-## Development and Release Checks
-
-With Node.js and VS Code's `code` command available on PATH:
-
-```sh
-npm ci
-npm test
-```
-
-The tests use VS Code's bundled Python grammar. If `code` is unavailable, set `VSCODE_PYTHON_EXTENSION` to the directory containing the built-in Python extension's `package.json`.
-
-Before publishing, install the built VSIX in a normal VS Code window, reload that window, and open [sample.inp](./tests/fixtures/sample.inp) and [sample.pes](./tests/fixtures/sample.pes). Check:
-
-- Ctrl+/ uses `**` outside Python blocks and `#` inside them.
-- `$` keywords and parameter values are highlighted inside and outside Python blocks.
-- `{...}` expressions have matching Python colours in both locations.
-- Ordinary Python and Abaqus highlighting resumes after output lines and block boundaries.
-
-
 ## Security and Privacy
 
 - This extension is grammar-only and provides syntax highlighting.
