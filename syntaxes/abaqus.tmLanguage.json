@@ -2,6 +2,7 @@
   "scopeName": "source.abaqus",
 
   "patterns": [
+    { "include": "#dollar_line" },
     { "include": "#keywords" },
     { "include": "#kv_pairs" },
     { "include": "#python_block" }
@@ -12,7 +13,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "^\\s*\\*\\*.*?\\*\\*\\s*$",
+          "match": "^\\s*\\*\\*.*$",
           "name": "comment.line.abaqus"
         },
         {
@@ -26,10 +27,28 @@
       ]
     },
 
+    "dollar_line": {
+      "begin": "^(\\s*\\$)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.dollar.abaqus"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#dollar_output"
+        }
+      ]
+    },
+
     "dollar_output": {
       "patterns": [
         {
-          "match": "\\*\\*.*?\\*\\*\\s*$",
+          "include": "#interpolation"
+        },
+        {
+          "match": "\\*\\*.*$",
           "name": "comment.line.abaqus"
         },
         {
@@ -42,18 +61,46 @@
       ]
     },
 
+    "interpolation": {
+      "name": "meta.embedded.inline.python.abaqus",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.interpolation.begin.python"
+        }
+      },
+      "end": "\\}|(?=$)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.interpolation.end.python"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.python"
+        }
+      ]
+    },
+
     "kv_pairs": {
       "patterns": [
         {
-          "match": "(\\b[A-Z_]+(?:\\s+[A-Z_]+)*\\s*=)([^,\\n\\r]+)",
-          "captures": {
+          "begin": "(\\b[A-Z_]+(?:\\s+[A-Z_]+)*\\s*=)",
+          "beginCaptures": {
             "1": {
               "name": "support.constant.parameter.abaqus"
+            }
+          },
+          "end": "(?=,|$)",
+          "patterns": [
+            {
+              "include": "#interpolation"
             },
-            "2": {
+            {
+              "match": "[^{,\\n\\r]+",
               "name": "string.unquoted.value.abaqus"
             }
-          }
+          ]
         },
         {
           "match": "(?<=,\\s*)(NLGEOM|ADD|REMOVE|FIXED|USER|FOLLOWER|FIELD|HISTORY|GENERATE|NONLINEAR|PRESSURE-OVERCLOSURE)(?=\\s*(?:,|$))",
@@ -67,7 +114,7 @@
     },
 
     "python_block": {
-      "name": "meta.embedded.block.python.abaqus",
+      "contentName": "meta.embedded.block.python.abaqus",
 
       "begin": "(<py\\b)",
       "beginCaptures": {
@@ -85,18 +132,7 @@
 
       "patterns": [
         {
-          "begin": "^(\\s*\\$)\\s*",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.dollar.abaqus"
-            }
-          },
-          "end": "$",
-          "patterns": [
-            {
-              "include": "#dollar_output"
-            }
-          ]
+          "include": "#dollar_line"
         },
         {
           "match": "\\$",

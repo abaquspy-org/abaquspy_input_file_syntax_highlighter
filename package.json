@@ -2,11 +2,12 @@
   "icon": "images/logo_marketplace.png",
   "name": "syntax-highlighter-for-abaqus-input-files",
   "displayName": "Syntax Highlighter for Abaqus Input Files",
-  "description": "Unofficial, community-maintained syntax highlighting for Abaqus .inp files with AbaqusPy-style embedded Python blocks",
-  "version": "0.0.2",
+  "description": "Unofficial, community-maintained syntax highlighting for Abaqus .inp and .pes files with AbaqusPy-style embedded Python blocks",
+  "version": "0.0.3",
   "publisher": "ismaelripoll",
   "license": "MIT",
   "scripts": {
+    "test": "node --test tests/grammar.test.cjs",
     "package": "vsce package",
     "publish:vsce": "vsce publish"
   },
@@ -22,6 +23,7 @@
     "abaqus",
     "abaquspy",
     "inp",
+    "pes",
     "python",
     "syntax-highlighting",
     "textmate",
@@ -31,19 +33,28 @@
     "vscode": "^1.85.0"
   },
   "categories": ["Programming Languages"],
+  "devDependencies": {
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
+  },
   "contributes": {
     "languages": [
       {
         "id": "abaqus",
-        "extensions": [".inp"],
-        "aliases": ["Abaqus"]
+        "extensions": [".inp", ".pes"],
+        "aliases": ["Abaqus"],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "abaqus",
         "scopeName": "source.abaqus",
-        "path": "./syntaxes/abaqus.tmLanguage.json"
+        "path": "./syntaxes/abaqus.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.python.abaqus": "python",
+          "meta.embedded.inline.python.abaqus": "python"
+        }
       }
     ],
     "configurationDefaults": {

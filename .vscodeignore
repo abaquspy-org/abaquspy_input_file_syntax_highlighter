@@ -2,6 +2,9 @@
 .vscode/**
 *.vsix
 old_vsix/**
+tests/**
+node_modules/**
+.gitignore
 
 # Local/editor artifacts
 *.log

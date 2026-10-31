@@ -1,0 +1,97 @@
+************************************************************************
+** Master-file highlighting example.
+** Python block colouring inside <py ... py>.
+** Abaqus .inp colouring with inline $ expressions.
+************************************************************************
+
+<py
+    ###################################################################
+    ## Import Main Python Modules                                    ##
+    ###################################################################
+    import pandas as pd
+    import numpy as np
+    import pysubsea as ss
+
+    ###################################################################
+    ## Import Input Data                                             ##
+    ###################################################################
+    # Read input data from Excel file
+    dict_inputs = pd.read_excel('_input_data.xlsx', sheet_name=None)
+
+    # Select sensitivity data for current run
+    sens_df = dict_inputs['Sensitivity']
+    sens_df = sens_df.loc[sens_df['Run']==PARAM_run]
+    sens_sr = sens_df.iloc[0].squeeze()
+
+    # Select linepipe data for current run
+    pipe_df = dict_inputs['Linepipe']
+    pipe_df = pipe_df.loc[
+        (pipe_df['Development']==sens_sr['Development']) &
+        (pipe_df['Pipeline']==sens_sr['Pipeline'])
+    ].copy()
+
+    # Manipulate linepipe data into series
+    pipe_df = pipe_df.transpose()
+    pipe_df.columns = pipe_df.loc['Property']
+    pipe_sr = pipe_df.loc['Value'].copy()
+    pipe_sr.index.name = None
+    pipe_sr.name = None
+
+    # Create pipe object and calculate properties
+    pipe = ss.Pipe(
+        outer_diameter=pipe_sr['od'],
+        wall_thickness=pipe_sr['wt'],
+    )
+    pipe_sr['orad'] = pipe.outer_radius()
+    pipe_sr['steel_area'] = pipe.steel_area()
+    pipe_sr['section_modulus'] = pipe.section_modulus()
+
+    ###################################################################################
+    ## Parameters                                                                    ##
+    ###################################################################################
+    # Combine sensitivity, pipe, geometry, and soil parameters into a single paramatre series
+    param_sr = pd.concat([sens_sr, pipe_sr], axis=0)
+    param_sr.rename(index=lambda k: k.replace(" ", "_").replace("-", "_").lower(), inplace=True)
+
+    # Create a dictionary of parameters to be used in Abaqus input file
+    param_dict = {}
+    for k, v in param_sr.items():
+        if isinstance(v, (bool, np.bool_)):
+            continue
+        if np.isscalar(v) and pd.isna(v):
+            continue
+        if isinstance(v, (int, np.integer)) and k in param_sr:
+            param_dict[k] = int(v)
+        elif isinstance(v, (float, np.floating)) and k in param_sr:
+            if float(v).is_integer():
+                param_dict[k] = int(v)
+            else:
+                param_dict[k] = round(float(v), 6)
+py>
+
+************************************************************************
+**                                                Heading and Restart **
+************************************************************************
+*HEADING
+Pipeline Model
+************************************************************************
+**                                                         Parameters **
+************************************************************************
+*PARAMETER
+<py
+    for k, v in param_dict.items():
+        $ {k}={v}
+py>
+************************************************************************
+**                                                           Geometry **
+************************************************************************
+*NODE, NSET=nset_s1_from
+ <node_from>, <x_from>, 0.0, <z_pipe>
+************************************************************************
+**                                                 Element Properties **
+************************************************************************
+*BEAM SECTION, ELSET=elset_pipe, MATERIAL=mat_pipe, SECTION=THICK PIPE
+ $ {pipe_sr['orad']}, {pipe_sr['wt']}
+
+ 3, 16
+**
