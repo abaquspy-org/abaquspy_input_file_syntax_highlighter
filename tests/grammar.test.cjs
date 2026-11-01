@@ -72,6 +72,48 @@ function metadataAt(tokens, position) {
   return metadata;
 }
 
+test('light palette overrides all Abaqus colors with readable contrast on white', () => {
+  const colors = manifest.contributes.configurationDefaults['editor.tokenColorCustomizations'];
+  const dark = colors.textMateRules;
+  const light = colors['[*Light*]'].textMateRules;
+  assert.deepEqual(light.map(rule => rule.scope), dark.map(rule => rule.scope));
+  assert.deepEqual(dark.map(rule => rule.settings.foreground),
+    ['#9f5fbf', '#BF5FA5', '#54c971', '#00CED1', '#ffb86c', '#ff7777']);
+  assert.deepEqual(light.map(rule => rule.settings.foreground),
+    ['#8000B0', '#B00080', '#008000', '#008080', '#C05800', '#D00000']);
+
+  const examples = [
+    ['** comment', '**'],
+    ['*NODE', '*NODE'],
+    ['*NODE, NSET=TEST', 'TEST'],
+    ['*NODE, NSET=TEST', 'NSET'],
+    ['<py', '<py'],
+    ['$*NODE', '$']
+  ];
+  try {
+    for (const rules of [dark, light]) {
+      registry.setTheme({ settings: [...dark, ...rules] });
+      examples.forEach(([line, text], index) => {
+        const tokens = grammar.tokenizeLine2(line, textmate.INITIAL).tokens;
+        const foreground = (metadataAt(tokens, line.indexOf(text)) >>> 15) & 511;
+        assert.equal(registry.getColorMap()[foreground],
+          rules[index].settings.foreground.toUpperCase());
+      });
+    }
+    for (const rule of light) {
+      const rgb = rule.settings.foreground.slice(1).match(/../g).map(channel => {
+        const value = parseInt(channel, 16) / 255;
+        return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+      });
+      const luminance = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+      assert(1.05 / (luminance + 0.05) >= 4.5,
+        `${rule.scope} must have at least 4.5:1 contrast on white`);
+    }
+  } finally {
+    registry.setTheme({ settings: [] });
+  }
+});
+
 test('file associations and comment configurations are preserved', () => {
   const language = manifest.contributes.languages.find(entry => entry.id === 'abaqus');
   assert.deepEqual(language.extensions, ['.inp', '.pes']);

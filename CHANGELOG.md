@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.0.4] - 2026-11-01
+
+- Added a dedicated, higher-contrast color palette for light themes via theme-scoped (`[*Light*]`) token color defaults; dark themes keep the existing colors.
+- Added regression tests for palette application and at least 4.5:1 contrast on white.
+
 ## [0.0.3] - 2026-10-31
 
 - Added syntax highlighting for `.pes` files.

@@ -3,7 +3,7 @@
   "name": "syntax-highlighter-for-abaqus-input-files",
   "displayName": "Syntax Highlighter for Abaqus Input Files",
   "description": "Community-maintained syntax highlighting for Abaqus .inp and .pes files, including support for AbaqusPy-style embedded Python blocks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "ismaelripoll",
   "license": "MIT",
   "scripts": {
@@ -96,7 +96,47 @@
               "foreground": "#ff7777"
             }
           }
-        ]
+        ],
+        "[*Light*]": {
+          "textMateRules": [
+            {
+              "scope": "comment.line.abaqus",
+              "settings": {
+                "foreground": "#8000B0"
+              }
+            },
+            {
+              "scope": "keyword.control.abaqus",
+              "settings": {
+                "foreground": "#B00080"
+              }
+            },
+            {
+              "scope": "string.unquoted.value.abaqus",
+              "settings": {
+                "foreground": "#008000"
+              }
+            },
+            {
+              "scope": "support.constant.parameter.abaqus",
+              "settings": {
+                "foreground": "#008080"
+              }
+            },
+            {
+              "scope": "entity.name.tag.python.abaqus",
+              "settings": {
+                "foreground": "#C05800"
+              }
+            },
+            {
+              "scope": "punctuation.definition.dollar.abaqus",
+              "settings": {
+                "foreground": "#D00000"
+              }
+            }
+          ]
+        }
       }
     }
   }

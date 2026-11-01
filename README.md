@@ -23,6 +23,11 @@ AbaqusPy extends the standard Abaqus `.inp` syntax with:
 - Improves readability of complex `.inp` and `.pes` files used in automation and parametric workflows.
 
 
+## Syntax Colors
+
+Supports syntax highlighting for light and dark themes.
+
+
 ## Preview
 
 #### Python Blocks, Inline `$` Output, and Abaqus `.inp` Syntax:
@@ -44,6 +49,7 @@ AbaqusPy extends the standard Abaqus `.inp` syntax with:
 - **Publisher ID:** `ismaelripoll`
 - **Extension ID:** `ismaelripoll.syntax-highlighter-for-abaqus-input-files`
 - **Maintained by:** Subsea Energies (https://www.subseaenergies.com)
+
 
 ## Related Framework
 
